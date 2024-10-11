@@ -1,0 +1,132 @@
+
+<!-- saved from url=(0272)https://2016355718-atari-embeds.googleusercontent.com/embeds/16cb204cf3a9d4d223a0a3fd8b0eec5d/inner-frame-minified.html?jsh=m%3B%2F_%2Fscs%2Fabc-static%2F_%2Fjs%2Fk%3Dgapi.lb.es.jid9tEDz4tI.O%2Fam%3DAACA%2Fd%3D1%2Frs%3DAHpOoo8rvjG3oxOfXKIg5i49Or1nI6Ivug%2Fm%3D__features__ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><!--<base target="_blank">--><base href="." target="_blank">
+
+
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DINO Tokenomics</title>
+    <script src="./chart.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap'); /* 恐龙风格字体 */
+
+        body {
+            font-family: 'Press Start 2P', sans-serif;
+            background-color: #4b5320; /* 棕绿色背景 */
+            color: #fff; /* 白色字体 */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        h2 {
+            color: #ffcc00; /* 黄色标题字体 */
+            font-size: 5vw; /* 根据屏幕宽度自动调整标题字体大小 */
+        }
+
+        .chart-container {
+            width: 90%; /* 使用手机的全宽 */
+            max-width: 600px; /* 设置最大宽度 */
+            margin: auto;
+            text-align: center;
+            background-color: #006600; /* 浅绿色容器 */
+            padding: 10px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        canvas {
+            max-width: 100%; /* 确保图表在手机屏幕上不会超出容器 */
+            height: auto !important; /* 图表高度自适应 */
+            border-radius: 15px;
+        }
+
+        /* 针对较小屏幕的调整 */
+        @media (max-width: 600px) {
+            h2 {
+                font-size: 7vw; /* 更小屏幕上的标题尺寸 */
+            }
+
+            .chart-container {
+                padding: 5px; /* 缩小内边距，适应小屏幕 */
+            }
+
+            canvas {
+                height: 300px; /* 限制高度，防止图表过大 */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="chart-container">
+        <h2>$DINO TOKENOMICS</h2>
+        <canvas id="dinoTokenomicsChart" width="594" height="594" style="display: block; box-sizing: border-box; height: 594px; width: 594px;"></canvas>
+    </div>
+
+    <script>
+        const ctx = document.getElementById('dinoTokenomicsChart').getContext('2d');
+        const dinoTokenomicsChart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: ['Presale (50%)', 'DEXs (10%)', 'Liquidity (35%)', 'Airdrop (5%)'],
+                datasets: [{
+                    data: [50, 10, 35, 5],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.8)',    // 红色
+                        'rgba(54, 162, 235, 0.8)',   // 蓝色
+                        'rgba(255, 206, 86, 0.8)',   // 黄色
+                        'rgba(75, 192, 192, 0.8)'    // 青色
+                    ],
+                    hoverBackgroundColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 255, 255, 1)',
+                    ],
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true, /* 启用宽高比控制，防止图表变形 */
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            color: '#fff',  // 白色图例字体
+                            font: {
+                                size: 12 /* 调整图例字体大小，适应手机屏幕 */
+                            }
+                        }
+                    },
+                    tooltip: {
+                        backgroundColor: 'rgba(0,0,0,0.7)',
+                        bodyColor: 'white',
+                        borderWidth: 1,
+                        borderColor: 'rgba(255, 255, 255, 0.8)'
+                    }
+                },
+                onClick: (e) => {
+                    const points = dinoTokenomicsChart.getElementsAtEventForMode(e, 'nearest', { intersect: true }, true);
+
+                    if (points.length) {
+                        const firstPoint = points[0];
+                        const label = dinoTokenomicsChart.data.labels[firstPoint.index];
+                        const value = dinoTokenomicsChart.data.datasets[firstPoint.datasetIndex].data[firstPoint.index];
+                        alert(`${label}: ${value}%`);
+                    }
+                }
+            }
+        });
+    </script>
+
+
+</body></html>
